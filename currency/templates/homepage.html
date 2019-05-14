@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'header.css' %}">
+    <style>
+
+        #container
+        {
+            background:red;
+        }
+        h3{
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        td
+        {
+            font:blue;
+        }
+        h1
+        {
+            font:orange;
+        }
+        .caps
+        {
+            text-transform:uppercase;
+        }
+    </style>
+    </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#myTable').dataTable();
+  });
+</script>
+</head>
+<body>
+            <center><h1>CriPri</h1>
+                    <h2>The place to know all the Latest informations about the cryptocurrencies</h2>
+            </center>
+            <hr>
+            <center><a href="add/"><img src="https://amican.com/wp-content/uploads/2017/01/83.jpg" height="50px" width="50px"></a></center>
+            <div class="table-responsive">
+            <table id="myTable" class="display table" width="100%">
+                <thead>
+                <tr>
+                <td><h4><b>Rank</b></h4></td>
+                <td><h4><b>Symbol</b></h4></td>
+                    <td><h4><b>Image</b></h4></td>
+                <td><h4><b>Name</b></h4></td>
+
+                <td><h4><b>Marketcap</b></h4></td>
+                <td><h4><b>Total Volume</b></h4></td>
+                    <td><h4><b>Price change 24h</b></h4></td>
+                    <td><h4><b>1h%</b></h4></td>
+                    <td><h4><b>24h%</b></h4></td>
+                    <td><h4><b>7d%</b></h4></td>
+                    <td><h4><b>Circulating Supply</b></h4></td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for link in links %}
+                <tr>
+                    <td><b>{{link.rank}}</b></td>
+                    <td class="caps"><b>{{link.symbol}}</b></td>
+                    <td><img src="{{link.image}}" width="50px" height="50px"></td>
+                    <td ><b><a href="/crypto/{{link.id}}">{{link.name}}</a></b></td>
+
+                    <td ><b style="color:#073B5B;">{{link.marketcap}}<div style="color:#21A611;">₹</div></b></td>
+                    <td><b style="color:#2874A6;">{{link.totalvolume}}</b></td>
+                    <td><b style="color:#2111A6;">{{link.pricechange}}₹</b></td>
+                    <td><b style="color:green;">{{link.green1}}{{link.upward1}}</b>
+                        <b style="color:red;">{{link.red1}}{{link.downward1}}</b>
+                        <b style="color:yellow;">{{link.None1}}</b>
+                    </td>
+                     <td><b style="color:green;">{{link.green7}}{{link.upward7}}</b>
+                        <b style="color:red;">{{link.red7}}{{link.downward7}}</b>
+                        <b style="color:yellow;">{{link.None7}}</b>
+                    </td>
+                     <td><b style="color:green;">{{link.green24}}{{link.upward24}}</b>
+                        <b style="color:red;">{{link.red24}}{{link.downward24}}</b>
+                        <b style="color:yellow;">{{link.None24}}</b>
+                    </td>
+                    <td><b style="color:black;">{{link.csupply}}</b></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+            </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+<head>
+<style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  width:50%;
+  padding: 20px;
+}
+input[type=text]{
+  width: 49.5%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+</style>
+</head>
+<body>
+    <h1>Pricechange</h1>
+    <hr>
+    <table>
+        <thead>
+        <td>24h</td><td>24h percentage</td><td>7d</td><td>14d</td><td>30d</td><td>60d</td><td>200d</td><td>1y</td>
+        </thead>
+        <tr>
+            <td>{{h24}}</td><td>{{h24p}}</td><td>{{pcp7d}}</td><td>{{pcp14d}}</td><td>{{pcp30d}}</td><td>{{pcp60d}}</td><td>{{pcp200d}}</td><td>{{pcp1year}}</td>
+        </tr>
+    </table>
+    <h1>Description</h1>
+    <hr>
+    <p><B>&nbsp&nbsp&nbsp{{desc}}</B></p>
+    <h1>Social</h1>
+    <hr>
+    <table>
+        <tr><td><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="80px" width="80px"></td><td><a href="{{repos}}">Github</a></td></tr>
+        <tr><td><img src="https://hamiltonrising.com/wp-content/uploads/2018/09/website-logo-png.png" height="80px" width="80px"></td><td><a href="{{homepage}}">Website</a></td></tr>
+        <tr><td><img src="https://i.redd.it/rq36kl1xjxr01.png" height="80px" width="80px"></td><td><a href="{{reddit}}">Reddit</a></td></tr>
+    </table>
+    <h1>Converter</h1>
+    <hr>
+    <div>
+    <form action="/converter" method="get">
+
+        <input style="width: 49.5%;padding: 12px 20px;margin: 8px 0;display: inline-block;  border: 1px solid #ccc;border-radius: 4px; box-sizing: border-box;" list="coins" name="coins" placeholder="coins">
+    <datalist id="coins">
+         {% for i in coinslist %}
+            <option value="{{i}}">
+        {% endfor %}
+    </datalist>
+    <input type="text" name="ip">
+    <input style="width: 49.5%;padding: 12px 20px;margin: 8px 0;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;" list="browsers" name="target" placeholder="currencies">
+    <datalist id="browsers">
+         {% for i in list %}
+            <option value="{{i}}">
+        {% endfor %}
+    </datalist>
+        <input type="text" name="ip2">
+    <input type="submit" value="Convert">
+    </form>
+    </div>
+    <h1>News</h1>
+    <hr>
+    <p><b>{{news}}</b></p>
+    <img src="{{newsimage}}" height="250px" width="250px">
+</body>
+</html>
